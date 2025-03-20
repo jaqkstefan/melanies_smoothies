@@ -1,25 +1,27 @@
 # Import python packages
 import streamlit as st
-import snowflake.connector
+#import snowflake.connector
 from snowflake.snowpark.functions import col
-from snowflake.snowpark.session import Session
+#from snowflake.snowpark.session import Session
 
 
-secrets = st.secrets["snowflake"]
-conn = snowflake.connector.connect(
-    user=secrets["user"],
-    password=secrets["password"],
-    account=secrets["account"]
-)
-session = snowflake.connector.connect(
-    user=secrets["user"],
-    password=secrets["password"],
-    account=secrets["account"],
-    warehouse=secrets["warehouse"],
-    database=secrets["database"],
-    schema=secrets["schema"]
-)
+#secrets = st.secrets["snowflake"]
+#conn = snowflake.connector.connect(
+#    user=secrets["user"],
+#    password=secrets["password"],
+#    account=secrets["account"]
+#)
+#session = snowflake.connector.connect(
+#    user=secrets["user"],
+#    password=secrets["password"],
+#    account=secrets["account"],
+#    warehouse=secrets["warehouse"],
+#    database=secrets["database"],
+#    schema=secrets["schema"]
+#)
 
+cnx = st.connection("snowflake")
+session = cnx.session()
 
 helpful_links = [
     "https://docs.streamlit.io",
