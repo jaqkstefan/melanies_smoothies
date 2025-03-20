@@ -3,22 +3,7 @@ import streamlit as st
 #import snowflake.connector
 from snowflake.snowpark.functions import col
 #from snowflake.snowpark.session import Session
-
-
-#secrets = st.secrets["snowflake"]
-#conn = snowflake.connector.connect(
-#    user=secrets["user"],
-#    password=secrets["password"],
-#    account=secrets["account"]
-#)
-#session = snowflake.connector.connect(
-#    user=secrets["user"],
-#    password=secrets["password"],
-#    account=secrets["account"],
-#    warehouse=secrets["warehouse"],
-#    database=secrets["database"],
-#    schema=secrets["schema"]
-#)
+import requests
 
 cnx = st.connection("snowflake")
 session = cnx.session()
@@ -69,3 +54,5 @@ if ingredients_list:
         session.sql(my_insert_stmt).collect()
         st.success('Your Smoothie is ordered!', icon="✅")
 
+smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
+st.text(smoothiefroot_response)
